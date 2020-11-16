@@ -1,16 +1,40 @@
 <template>
     <div class="container-fluid">
-        <app-nav-bar></app-nav-bar>
+        <div class="row">
+            <div class="col-md-3">
+                <contact-list :contacts="contacts"></contact-list>
+            </div>
+            <div class="col-md-9">
+                <conversation :contacts="selectedContact" :messages="messages"></conversation>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import AppNavBar from './AppNavBar.vue'
+    import ContactList from './ContactList'
+    import Conversation from './Conversation.vue'
 
     export default {
-    components: { AppNavBar },
+    components: { ContactList, Conversation },
+        props: ['user'],
+        data() {
+            return {
+                selectedContact: null,
+                messages: [],
+                contacts: [],
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            axios.get('/message')
+                .then(res => {
+                    this.messages = res.data.messages
+                })
+
+            axios.get('/contact') 
+                .then(res => {
+                    this.contacts = res.data.contacts
+                })
         }
     }
 </script>
