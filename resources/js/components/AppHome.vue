@@ -1,13 +1,7 @@
 <template>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <contact-list :contacts="contacts"></contact-list>
-            </div>
-            <div class="col-md-9">
-                <conversation :contacts="selectedContact" :messages="messages"></conversation>
-            </div>
-        </div>
+    <div class="app-home">
+        <contact-list :contacts="contacts" @selected="startConvoWith"></contact-list>
+        <conversation :contact="selectedContact" :messages="messages"></conversation>
     </div>
 </template>
 
@@ -35,6 +29,23 @@
                 .then(res => {
                     this.contacts = res.data.contacts
                 })
+        },
+        methods: {
+            startConvoWith(contact) {
+                axios.get(`/conversation/${contact.id}`)
+                    .then(res => {
+                        this.messages = res.data.messages
+                        console.log(this.messages);
+                        this.selectedContact = contact
+                    })
+            }
         }
     }
 </script>
+<style lang="scss" scoped>
+    .app-home {
+        height: 90% !important;
+        display: flex;
+        background: white;
+    }
+</style>

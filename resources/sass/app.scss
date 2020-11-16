@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    height: 100% !important;
+}
+.card-body {
+    padding: 0 !important;
+}

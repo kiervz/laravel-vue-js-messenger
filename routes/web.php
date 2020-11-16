@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::resource('message', 'MessageController');
 Route::resource('contact', 'UserController');
+
+Route::get('/conversation/{id}', 'UserController@getMessageFor');

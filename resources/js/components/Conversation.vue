@@ -1,8 +1,8 @@
 <template>
     <div class="conversation">
         <h1>{{ contact ? contact.name : "Select a Contact" }}</h1>
-        <message-feed></message-feed>
-        <message-composer></message-composer>
+        <message-feed :contact="contact" :messages="messages"></message-feed>
+        <message-composer @send="sendMessage"></message-composer>
     </div>
 </template>
 
@@ -11,11 +11,33 @@
     import MessageComposer from "./MessageComposer.vue"
 
     export default {
+        props: ['contact', 'messages'],
         components: { MessageFeed, MessageComposer },
         data() {
             return {
-
+                
+            }
+        }, 
+        methods: {
+            sendMessage(text) {
+                console.log(text);
             }
         }
     }
 </script>
+
+<style style="scss" scoped>
+    .conversation {
+        flex:5;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    .conversation h1 {
+        font-size: 20px;
+        padding: 10px;
+        margin: 0;
+        border-bottom: 1px solid lightblue;
+    }
+</style>
