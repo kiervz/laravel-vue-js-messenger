@@ -20,24 +20,30 @@
         }, 
         methods: {
             sendMessage(text) {
-                console.log(text);
+                axios.post('/conversation/send', {
+                    contact_id: this.contact.id,
+                    text: text
+                }).then(res => {
+                    this.$emit('newMessage', res.data.message)            
+                })
             }
         }
     }
 </script>
 
-<style style="scss" scoped>
+<style lang="scss" scoped>
     .conversation {
         flex:5;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
-    }
-    .conversation h1 {
-        font-size: 20px;
-        padding: 10px;
-        margin: 0;
-        border-bottom: 1px solid lightblue;
+        
+        h1 {
+            font-size: 20px;
+            padding: 10px;
+            margin: 0;
+            border-bottom: 1px solid lightblue;
+        }
     }
 </style>

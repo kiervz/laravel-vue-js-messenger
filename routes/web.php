@@ -23,3 +23,4 @@ Route::resource('message', 'MessageController');
 Route::resource('contact', 'UserController');
 
 Route::get('/conversation/{id}', 'UserController@getMessageFor');
+Route::post('/conversation/send', 'UserController@send');

@@ -1,5 +1,5 @@
 <template>
-    <div class="message-feed">
+    <div class="message-feed" ref="feed">
         <ul v-if="contact">
             <li 
                 v-for="message in messages" 
@@ -21,6 +21,21 @@
 
             }
         },
+        methods: {
+            scrollToBottom() {
+                setTimeout(() => {
+                    this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
+                }, 50);
+            }
+        },
+        watch: {
+            contact(contact) {
+                this.scrollToBottom()
+            },
+            messages(messages) {
+                this.scrollToBottom()
+            }
+        }
     }
 </script>
 

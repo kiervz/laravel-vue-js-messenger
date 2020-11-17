@@ -1,7 +1,7 @@
 <template>
     <div class="app-home">
         <contact-list :contacts="contacts" @selected="startConvoWith"></contact-list>
-        <conversation :contact="selectedContact" :messages="messages"></conversation>
+        <conversation :contact="selectedContact" :messages="messages" @newMessage="newMessage"></conversation>
     </div>
 </template>
 
@@ -35,9 +35,11 @@
                 axios.get(`/conversation/${contact.id}`)
                     .then(res => {
                         this.messages = res.data.messages
-                        console.log(this.messages);
                         this.selectedContact = contact
                     })
+            },
+            newMessage(text) {
+                this.messages.push(text);
             }
         }
     }
