@@ -38,6 +38,7 @@
 <style lang="scss" scoped>
     .contact-list {
         flex:2;
+        height: 100%;
         max-height: 615px;
         overflow-y: scroll;
         background: rgb(247, 246, 246);

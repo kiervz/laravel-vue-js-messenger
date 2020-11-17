@@ -29,6 +29,11 @@
                 .then(res => {
                     this.contacts = res.data.contacts
                 })
+            
+            Echo.private('chat')
+                .listen('MessageSent', (e) => {
+                    this.messages.push(e.message);
+                });
         },
         methods: {
             startConvoWith(contact) {
@@ -41,7 +46,8 @@
             newMessage(text) {
                 this.messages.push(text);
             }
-        }
+            
+        },
     }
 </script>
 <style lang="scss" scoped>

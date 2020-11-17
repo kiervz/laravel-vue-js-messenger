@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,6 +29,8 @@ class UserController extends Controller
             'to' => $request->contact_id,
             'text' => $request->text
         ]);
+        
+        broadcast(new MessageSent($message))->toOthers();
 
         return response()->json([
             'message' => $message
