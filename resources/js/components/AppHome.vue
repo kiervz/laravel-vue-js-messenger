@@ -33,7 +33,9 @@
             
             Echo.private(`chat.${this.user.id}`)
                 .listen('MessageSent', (e) => {
-                    this.newMessage(e.message);
+                    if (this.selectedContact && e.message.from == this.selectedContact.id) {
+                        this.newMessage(e.message);
+                    }
                 });
         },
         methods: {

@@ -1943,7 +1943,9 @@ __webpack_require__.r(__webpack_exports__);
       console.log(_this.contacts);
     });
     Echo["private"]("chat.".concat(this.user.id)).listen('MessageSent', function (e) {
-      _this.newMessage(e.message);
+      if (_this.selectedContact && e.message.from == _this.selectedContact.id) {
+        _this.newMessage(e.message);
+      }
     });
   },
   methods: {
@@ -1972,6 +1974,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -6603,7 +6606,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".contact-list[data-v-0ee8d67a] {\n  flex: 2;\n  height: 100%;\n  max-height: 615px;\n  overflow-y: scroll;\n  background: #f7f6f6;\n  border-right: 1px solid lightblue;\n}\nul[data-v-0ee8d67a] {\n  list-style: none;\n  padding-left: 0;\n}\nli[data-v-0ee8d67a] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid lightblue;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\nli.selected[data-v-0ee8d67a] {\n  background: #e3e6e6;\n}\n.avatar[data-v-0ee8d67a] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.avatar img[data-v-0ee8d67a] {\n  width: 50px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contact[data-v-0ee8d67a] {\n  flex: 3;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contact p[data-v-0ee8d67a] {\n  margin: 0;\n}\n.contact p.name[data-v-0ee8d67a] {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".contact-list[data-v-0ee8d67a] {\n  flex: 2;\n  height: 100%;\n  max-height: 615px;\n  overflow-y: scroll;\n  background: #f7f6f6;\n  border-right: 1px solid lightblue;\n}\nul[data-v-0ee8d67a] {\n  list-style: none;\n  padding-left: 0;\n}\nli[data-v-0ee8d67a] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid lightblue;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\nli.selected[data-v-0ee8d67a] {\n  background: #e3e6e6;\n}\n.avatar[data-v-0ee8d67a] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.avatar img[data-v-0ee8d67a] {\n  width: 50px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contact[data-v-0ee8d67a] {\n  flex: 3;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contact p[data-v-0ee8d67a] {\n  margin: 0;\n}\n.contact p.name[data-v-0ee8d67a] {\n  font-weight: bold;\n}\n.unread[data-v-0ee8d67a] {\n  background: #2fa5cc;\n  color: white;\n  position: absolute;\n  right: 6px;\n  top: 14px;\n  display: flex;\n  min-width: 24px;\n  justify-content: center;\n  border-radius: 50%;\n  font-size: 12px;\n}", ""]);
 
 // exports
 
@@ -44746,7 +44749,13 @@ var render = function() {
               _c("p", { staticClass: "email" }, [
                 _vm._v(_vm._s(contact.email) + " ")
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            contact.unread
+              ? _c("span", { staticClass: "unread" }, [
+                  _vm._v(_vm._s(contact.unread))
+                ])
+              : _vm._e()
           ]
         )
       }),

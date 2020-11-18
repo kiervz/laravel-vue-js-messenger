@@ -13,6 +13,7 @@
                     <p class="name"> {{contact.name }}</p>
                     <p class="email">{{ contact.email }} </p>
                 </div>
+                <span class="unread" v-if="contact.unread">{{ contact.unread }}</span>
             </li>
         </ul>
     </div>
@@ -81,5 +82,17 @@
         &.name {
             font-weight: bold;
         }
+    }
+    .unread {
+        background: #2fa5cc;
+        color: white;
+        position: absolute;
+        right: 6px;
+        top: 14px;
+        display: flex;
+        min-width: 24px;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 12px;
     }
 </style>

@@ -19,7 +19,6 @@ class ContactResource extends JsonResource
             'email' => $this->email,
             'name' => $this->name,
             'profile_img' => $this->profile_img,
-            'messages_count' => $this->messages
         ];
     }
 }
