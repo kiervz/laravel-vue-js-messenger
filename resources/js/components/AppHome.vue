@@ -28,6 +28,7 @@
             axios.get('/contact') 
                 .then(res => {
                     this.contacts = res.data.contacts
+                    console.log(this.contacts);
                 })
             
             Echo.private(`chat.${this.user.id}`)

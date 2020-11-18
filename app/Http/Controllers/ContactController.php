@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
+use App\Http\Resources\ContactResource;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class ContactController extends Controller
 {
     public function index() 
     {
-        $contacts = User::where('id', '<>', Auth::id())->get();
+        $contacts = ContactResource::collection(User::where('id', '<>', Auth::id())->get());
 
         return response()->json(['contacts' => $contacts]);
     }

@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('message', 'MessageController');
-Route::resource('contact', 'UserController');
+Route::resource('contact', 'ContactController');
 
-Route::get('/conversation/{id}', 'UserController@getMessageFor');
-Route::post('/conversation/send', 'UserController@send');
+Route::get('/conversation/{id}', 'ContactController@getMessageFor');
+Route::post('/conversation/send', 'ContactController@send');

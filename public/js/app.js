@@ -1940,6 +1940,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios.get('/contact').then(function (res) {
       _this.contacts = res.data.contacts;
+      console.log(_this.contacts);
     });
     Echo["private"]("chat.".concat(this.user.id)).listen('MessageSent', function (e) {
       _this.newMessage(e.message);
