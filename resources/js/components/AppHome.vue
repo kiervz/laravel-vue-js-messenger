@@ -30,9 +30,9 @@
                     this.contacts = res.data.contacts
                 })
             
-            Echo.private('chat')
+            Echo.private(`chat.${this.user.id}`)
                 .listen('MessageSent', (e) => {
-                    this.messages.push(e.message);
+                    this.newMessage(e.message);
                 });
         },
         methods: {
@@ -43,10 +43,9 @@
                         this.selectedContact = contact
                     })
             },
-            newMessage(text) {
-                this.messages.push(text);
+            newMessage(message) {
+                this.messages.push(message);
             }
-            
         },
     }
 </script>

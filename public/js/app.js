@@ -1941,8 +1941,8 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/contact').then(function (res) {
       _this.contacts = res.data.contacts;
     });
-    Echo["private"]('chat').listen('MessageSent', function (e) {
-      _this.messages.push(e.message);
+    Echo["private"]("chat.".concat(this.user.id)).listen('MessageSent', function (e) {
+      _this.newMessage(e.message);
     });
   },
   methods: {
@@ -1954,8 +1954,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.selectedContact = contact;
       });
     },
-    newMessage: function newMessage(text) {
-      this.messages.push(text);
+    newMessage: function newMessage(message) {
+      this.messages.push(message);
     }
   }
 });
